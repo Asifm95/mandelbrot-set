@@ -31,25 +31,19 @@ const sketch = (p: p5) => {
     for (let i = 0; i <= height; i++) {
       for (let j = 0; j <= width; j++) {
         const [x, y] = tranformToXY(j, i, xCent, yCent, width, height, scale);
-        const [r, g, b] = getColor(mandelbrot(x, y));
-        p.stroke(p.color(r, g, b));
+        const [h, s, v] = getColor(mandelbrot(x, y));
+        p.colorMode('hsb');
+        p.stroke(h, s, v);
         p.point(j, i);
       }
     }
   };
 
-  const getColor = (iterationCount: number): [number, number, number] => {
-    if (iterationCount === maxItration) return [0, 0, 0];
-    else if (iterationCount <= maxItration / 2)
-      return [0, 0, 20 + Math.round(200 / (maxItration / 2)) * iterationCount];
-    else
-      return [
-        Math.round(200 / (maxItration / 2)) *
-          (iterationCount - Math.round(maxItration / 2)),
-        Math.round(200 / (maxItration / 2)) *
-          (iterationCount - Math.round(maxItration / 2)),
-        255,
-      ];
+  const getColor = (n: number): [number, number, number] => {
+    if (isNaN(n)) n = 100;
+    const [hue, saturation] = [360 * (n / maxItration), 100];
+    const value = n < maxItration ? 100 : 0;
+    return [hue, saturation, value];
   };
 };
 
