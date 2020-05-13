@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "An implementation of the famous Mandelbrot set",
   "main": "index.js",
+  "homepage": "https://asifm95.github.io/mandelbrot-set/",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build --no-source-maps index.html -d build",
+    "build": "parcel build --no-source-maps index.html -d build --public-url ./",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -14,6 +16,7 @@
   },
   "devDependencies": {
     "cssnano": "^4.1.10",
+    "gh-pages": "^2.2.0",
     "typescript": "^3.8.3"
   },
   "author": "Asif Mohammed",
