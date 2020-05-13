@@ -1,4 +1,5 @@
 import config from './config';
+import { renormalizeEscape } from './utils';
 
 const { maxItration } = config;
 
@@ -16,5 +17,6 @@ export default (cX: number, cY: number) => {
     sqrMagnitude = z0X * z0X + z0Y * z0Y;
     iter++;
   }
-  return iter;
+  // return iter;
+  return renormalizeEscape(iter, Math.sqrt(sqrMagnitude));
 };
