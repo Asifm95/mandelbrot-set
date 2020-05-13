@@ -3,11 +3,11 @@ import p5 from 'p5';
 import { tranformToXY } from './utils';
 import mandelbrot from './mandelbrot';
 
-let scale = 300;
 let scaleFactor = 2;
-let xCent = 0;
+let xCent = -0.4;
 let yCent = 0;
 const { width, height, maxItration } = config;
+let scale = width < 600 ? 180 : 300;
 
 const sketch = (p: p5) => {
   p.setup = () => {
