@@ -17,6 +17,15 @@ const sketch = (p: p5) => {
 
   p.draw = () => drawMandelbrot();
 
+  p.mouseClicked = (e) => zoomMandelbrot();
+
+  const zoomMandelbrot = () => {
+    const [j, i] = [p.mouseX, p.mouseY];
+    const [_x, _y] = tranformToXY(j, i, xCent, yCent, width, height, scale);
+    [xCent, yCent] = [_x, _y];
+    scale *= scaleFactor;
+    drawMandelbrot();
+  };
   const drawMandelbrot = () => {
     console.log('draw', width, height);
     for (let i = 0; i <= height; i++) {
